@@ -16,10 +16,23 @@ import addressRouter from './route/address.route.js'
 import orderRouter from './route/order.route.js'
 
 const app = express()
-app.use(cors({
-    credentials : true,
-    origin : process.env.FRONTEND_URL
-}))
+// app.use(cors({
+//     credentials : true,
+//     origin : "*"
+//     // origin : process.env.FRONTEND_URL
+// }))
+
+app.use(
+    cors({
+      credentials: true,
+      origin: "*", // Allow specific frontend URL
+      methods: ["GET", "POST", "PUT", "DELETE"],
+      allowedHeaders: ["Content-Type", "Authorization"],
+    })
+  );
+
+  
+
 app.use(express.json())
 app.use(cookieParser())
 app.use(morgan())
